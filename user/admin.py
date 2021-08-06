@@ -1,0 +1,1 @@
+from Labb.admin import myadmin

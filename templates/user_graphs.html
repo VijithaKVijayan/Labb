@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %} {% block extrahead %}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"
+    integrity="sha512-5vwN8yor2fFT9pgPS9p9R7AszYaNn0LkQElTXIsZFCL7ucT8zDCAqlQXDdaqgA1mZP47hdvztBMsIoFxq/FyyQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+{% endblock extrahead %} {% block content %}
+<h1>user Graphs</h1>
+<canvas
+    id="myChart"
+    width="800"
+    height="400"
+    style="background-color: aliceblue"
+></canvas>
+<script>
+    var xValues = {{ x_values }};
+    var yValues = {{ y_values }};
+
+    new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: yValues,
+          datasets: [{
+            label: '{{ service_name }}',
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "green",
+            borderColor: "rgba(0,0,255,0.1)",
+            data: xValues
+          }],
+        },
+      });
+</script>
+{% endblock %}
